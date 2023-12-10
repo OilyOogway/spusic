@@ -1,0 +1,38 @@
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Song Quiz</title>
+</head>
+
+<body>
+    <div id="start">
+        <label>Hi welcome to spusic please enter a public playlist or just click start!</label>
+        <input type="text" id="playlist"></br>
+        <button class="play">
+            Start game
+        </button>
+    </div>
+    <div class="tracks" id="tracks" hidden="true">
+        <button class="track" data-spotify-id=""></button>
+        <button class="track" data-spotify-id=""></button>
+        <button class="track" data-spotify-id=""></button>
+        <button class="track" data-spotify-id=""></button>
+        <p id="score">Score: 0</p>
+    </div>
+    <div hidden="true">
+    </div>
+    <div id="game_end" hidden="true">
+        <h1>Game over!</h1>
+        <p id="end_score">Score: </p>
+        <button class="play">
+            Play again
+        </button>
+        <button id="back_to_start">
+            Back to start
+        </button>
+    </div>
+</body>
+<script src="index.js"></script>
+
+</html>
