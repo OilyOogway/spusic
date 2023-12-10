@@ -1,16 +1,17 @@
-let client_id = 'a41241959d87440a819279b03bacad2d';
-let client_secret = '6a84941e44414903bc3dcf20606b73f5';
-let token_url = 'https://accounts.spotify.com/api/token';
-let playlist_url = 'https://api.spotify.com/v1/playlists/3HOj7HdL0TNKxcXZXgr7CG/tracks?market=US&limit=100';
-let access_token = null;
-let offset = 0;
-let playlist = [];
-let correctIndex = null;
-let player = null;
-let timer = null;
+var client_id = 'a41241959d87440a819279b03bacad2d';
+var client_secret = '6a84941e44414903bc3dcf20606b73f5';
+var token_url = 'https://accounts.spotify.com/api/token';
+// Default playlist - Classic hits everyone should know
+var playlist_url = 'https://api.spotify.com/v1/playlists/'
+                   + '3HOj7HdL0TNKxcXZXgr7CG/tracks?market=US&limit=100';
+var access_token = null;
+var offset = 0;
+var playlist = [];
+var correctIndex = null;
+var player = null;
+var timer = null;
+var score = 0;
 const score_display = document.getElementById("score");
-let score = 0;
-
 
 document.querySelectorAll('.play').forEach(play_button => {
     play_button.addEventListener("click", getSongs);
@@ -47,18 +48,15 @@ function getSongs() {
 function getPlaylistTracks(token) {
     var input = document.getElementById('playlist').value;
     var match = input.match(/playlist\/([^?]+)/);
+    playlist = [];
 
     if (match) {
         const playlist_id = match[1];
-        console.log('playlist id', playlist_id)
         playlist_url = "https://api.spotify.com/v1/playlists/" +
                        playlist_id + "/tracks?market=US&limit=100";
-    } else {
-        // no match found
     }
 
     access_token = token;
-
 
     fetch(playlist_url, {
         headers: {
@@ -109,7 +107,6 @@ function getRandomInt(max) {
 
 function setupGame() {
     // Randomly choose 4 songs from the playlist
-
     var duplicate = 1;
     const track_index = [];
 
@@ -125,7 +122,6 @@ function setupGame() {
     }
 
     // Populate song buttons
-
     var t = 0
     document.querySelectorAll('.track').forEach(
         track => {
@@ -140,11 +136,8 @@ function setupGame() {
 
 
     // Choose a random song to play
-
     correctIndex = getRandomInt(4);
     if (player == null) {
-        // console.log('correct index', track_index[correctIndex]);
-        // console.log(playlist[track_index[correctIndex]].preview_url)
         player = new Audio(playlist[track_index[correctIndex]].preview_url);
     } else {
         player.pause();
@@ -152,35 +145,29 @@ function setupGame() {
     }
     if (timer != null)
         clearTimeout(timer);
-    timer = setTimeout(timeout, 10000);
-    player.play(); 
-}
-
-function timeout() {
-    if (timer != null) {
-        player.pause();
-        endGame();
-    }
+    timer = setTimeout(endGame, 10000);
+    player.play();
 }
 
 function check(indexClicked) {
+    // Return true if correct and false otherwise
     if (indexClicked == correctIndex) {
-        console.log("Correct");
         score++;
         score_display.innerText = "Score: " + score
         return true;
     }
     else {
-        console.log("Incorrect");
-        timer = null;
-        player.pause();
         return false;
     }
 }
 
 function endGame() {
     // Cancel timer
-    timer = null;
+    if (timer != null) {
+        clearTimeout(timer);
+    }
+
+    player.pause();
 
     // Display game results
     document.getElementById('tracks').hidden = true;
@@ -190,3 +177,19 @@ function endGame() {
     // Reset score
     score = 0
 }
+
+// Example function to fetch high scores from the server
+// async function getHighScores() {
+//     try {
+//       const response = await fetch('/highscore');
+//       const highScores = await response.json();
+  
+//       // Display high scores (modify this based on your UI)
+//       console.log('High Scores:', highScores);
+//     } catch (error) {
+//       console.error('Error fetching high scores:', error);
+//     }
+//   }
+  
+//   // Example usage to fetch high scores
+//   getHighScores();  
