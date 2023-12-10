@@ -132,8 +132,12 @@ function setupGame() {
 
     // Show track buttons and score
     document.getElementById('tracks').hidden = false;
+    //I added this
+    document.getElementById('highscore').hidden = false;
     score_display.innerText = "Score: " + score;
 
+    //Luke added this to get the highscore
+    getHighScore();
 
     // Choose a random song to play
     correctIndex = getRandomInt(4);
@@ -161,6 +165,7 @@ function check(indexClicked) {
     }
 }
 
+
 function endGame() {
     // Cancel timer
     if (timer != null) {
@@ -174,22 +179,50 @@ function endGame() {
     document.getElementById('game_end').hidden = false;
     document.getElementById('end_score').innerText = "Score: " + score;
 
+    // Post the score to the server
+    //Luke's note: fixed the score constantly being zero by posting before the score was reset
+    postScore();
     // Reset score
-    score = 0
+    score = 0;
+
+    
+}
+function postScore() {
+    const playerName = prompt("Enter your name:");
+    if (playerName) {
+        const scoreData = {
+            playerName: playerName,  // Corrected property name
+            score: score
+        };
+
+        console.log('Submitting score:', scoreData);
+
+        fetch('/submitScore', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(scoreData),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Score submitted successfully:', data);
+        })
+        .catch(error => {
+            console.error('Error submitting score:', error);
+        });
+    }
 }
 
-// Example function to fetch high scores from the server
-// async function getHighScores() {
-//     try {
-//       const response = await fetch('/highscore');
-//       const highScores = await response.json();
-  
-//       // Display high scores (modify this based on your UI)
-//       console.log('High Scores:', highScores);
-//     } catch (error) {
-//       console.error('Error fetching high scores:', error);
-//     }
-//   }
-  
-//   // Example usage to fetch high scores
-//   getHighScores();  
+// Add this function to your existing JavaScript code
+function getHighScore() {
+    fetch('/getHighScore')
+        .then(response => response.json())
+        .then(data => {
+            const highScoreElement = document.getElementById('highscore');
+            highScoreElement.innerText = "High Score: " + data.highScore;
+        })
+        .catch(error => {
+            console.error('Error getting high score:', error);
+        });
+}
