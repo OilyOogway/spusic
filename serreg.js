@@ -189,30 +189,7 @@ app.post('/submitScore', async (req, res) => {
       
       
 
-// Route for getting the highest score
-app.get('/getHighScore', async (req, res) => {
-  try {
-    const client = await MongoClient.connect(MONGODB_URI);
-    const dbo = client.db('test');
-    const collection = dbo.collection('logins');
 
-    // Find the document with the highest score
-    const result = await collection.find().sort({ highScore: -1 }).limit(1).toArray();
-        console.log(result);
-    if (result.length > 0) {
-      const highScore = result[0].highScore;
-      res.status(200).json({ username, highScore });
-    } else {
-      res.status(404).json({ error: 'No high score found' });
-    }
-
-    client.close();
-  } catch (error) {
-    console.error('Error connecting to the database or getting high score:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
-      
 
 // Start the server
 app.listen(PORT, () => {
