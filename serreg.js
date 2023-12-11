@@ -10,6 +10,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const MONGODB_URI = 'mongodb+srv://idhar01:bearniles7@cluster0.m9zr1ap.mongodb.net/?retryWrites=true&w=majority';
 
+app.use(express.static('public'));
+
 mongoose.connect(MONGODB_URI);
 const db = mongoose.connection;
 
@@ -29,7 +31,7 @@ app.use(bodyParser.json());
 
 // Login route
 app.get('/login', (req, res) => {
-  res.sendFile(__dirname + '/login.html');
+  res.sendFile(__dirname, 'public', '/login.html');
 });
 
 app.post('/login', async (req, res) => {
@@ -56,7 +58,7 @@ app.post('/login', async (req, res) => {
 
 // Registration route
 app.get('/register', (req, res) => {
-  res.sendFile(__dirname + '/register.html');
+  res.sendFile(__dirname, 'public', '/register.html');
 });
 
 app.post('/register', async (req, res) => {
