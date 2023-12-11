@@ -323,4 +323,16 @@ function realisticPrompt(message, defaultValue = "") {
     }
 }
 
+function getHighScore() {
+    fetch('/getHighScore')
+        .then(response => response.json())
+        .then(data => {
+            const highScoreElement = document.getElementById('highscore');
+            highScoreElement.innerText = "High Score: " + data.username + " - " + data.highScore;
+        })
+        .catch(error => {
+            console.error('Error getting high score:', error);
+        });
+}
+
 
