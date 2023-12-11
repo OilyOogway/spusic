@@ -12,21 +12,16 @@ body {
     background-color: #1d2630;
 }
 
-/* Common Styles for Start Screen and Score Container */
-.start-screen,
-.score-container {
+/* Logo Styles */
+#logo {
     position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    top: 20px;
+    left: 20px;
+    width: 100;
+    height: auto;
 }
 
 /* Start Section Styles */
-/* Welcoming Screen Styles */
 #start {
     position: absolute;
     top: 50%;
@@ -38,23 +33,23 @@ body {
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
     color: #fff;
-    font-family: 'Arial', sans-serif; /* Choose a welcoming font */
+    font-family: 'Arial', sans-serif;
 }
 
 #start label {
     display: block;
     margin-bottom: 20px;
-    font-size: 1.2em;
+    font-size: 18px;
 }
 
 #playlist {
     padding: 10px;
-    width: 60%; /* Adjust the width as needed */
+    width: 60%;
     box-sizing: border-box;
     margin-bottom: 20px;
     border: 1px solid #bdc3c7;
     border-radius: 5px;
-    font-size: 1em;
+    font-size: 16px;
 }
 
 .play {
@@ -65,40 +60,17 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-size: 1.5em;
-    transition: background-color 0.3s ease; /* Add a smooth transition */
+    transition: background-color 0.3s ease;
 }
 
 .play:hover {
     background-color: #27ae60;
 }
- 
-
-/* Common Button Styles */
-button {
-    border: none;
-    outline: none;
-    cursor: pointer;
-}
-
-/* Common Styles for Buttons */
-#start-button,
-#restart,
-.play,
-.tracks button {
-    font-size: 1.33em;
-    padding: 0.5em 1.8em;
-    border-radius: 0.2em;
-    box-shadow: 0 20px 30px rgba(0, 0, 0, .4);
-}
-
-#restart {
-    margin-top: 0.9em;
-}
 
 /* Tracks Section Styles */
 #tracks {
     background-color: #fff;
-    padding: 3.1em 1.8em;
+    padding: 3.16px 1.8em;
     width: 80%;
     max-width: 37.5em;
     margin: 0 auto;
@@ -109,101 +81,22 @@ button {
     border-radius: 0.6em;
 }
 
-/* Header Styles */
-.header {
-    margin-bottom: 1.8em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 0.6em;
-    border-bottom: 0.1em solid #c0bfd2;
-}
-
-/* Timer Styles */
-.timer-div {
-    background-color: #e1f5fe;
-    width: 7.5em;
-    border-radius: 1.8em;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.7em 1.8em;
-}
-
-/* Question Styles */
-.question {
-    margin-bottom: 1.25em;
-    font-weight: 600;
-}
-
-/* Options Styles */
-.options-div {
-    font-size: 0.9em;
-    width: 100%;
-    padding: 1em;
-    margin: 0.3em 0;
-    text-align: left;
-    outline: none;
-    background: transparent;
-    border: 1px sold #c0bfd2;
-    border-radius: 0.3em;
-}
-
-.options-div:disabled {
-    color: #000;
-    cursor: not-allowed;
-}
-
-/* Next Button Styles */
-#next-button {
-    font-size: 1em;
-    margin-top: 1.5em;
-    background-color: #1d2630;
-    color: #fff;
-    padding: 0.7em 1.8em;
-    border-radius: 0.3em;
-    float: right;
-    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-/* Hide Class */
-.hide {
-    display: none;
-}
-
-/* Correct and Incorrect Styles */
-.incorrect {
-    background-color: #ffdde0;
-    color: #d32f2f;
-    border-color: #d32f2f;
-}
-
-.correct {
-    background-color: #e7f6d5;
-    color: #689f38;
-    border-color: #689f38;
-}
-
-/* User Score Styles */
-#user-score {
-    font-size: 1.5em;
-    color: #fff;
-}
-
-/* Track Styles */
-.track {
-    display: block;
+/* Score Styles */
+#score, #highscore {
+    font-size: 18px;
+    margin-bottom: 16px;
+    margin-top: 16px;
 }
 
 /* Tracks Button Styles */
 .tracks button {
-    font-size: 1em;
-    margin-top: 1.5em;
+    font-size: 16px;
+    margin-top: 16px;
+    display: block;
     background-color: #1d2630;
     color: #fff;
     padding: 0.7em 1.8em;
     border-radius: 0.3em;
-    float: right;
     box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.3);
 }
 
@@ -248,7 +141,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1.2em;
+    font-size: 18px;
     margin-right: 10px;
 }
 
