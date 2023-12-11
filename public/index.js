@@ -134,8 +134,6 @@ function setupGame() {
     document.getElementById('tracks').hidden = false;
     document.getElementById('highscore').hidden = false;
     score_display.innerText = "Score: " + score;
-
-    getHighScore();
     getTopScores();
 
     // Choose a random song to play
@@ -323,21 +321,6 @@ function realisticPrompt(message, defaultValue = "") {
     } catch (error) {
         console.error('Error fetching leaderboard data:', error);
     }
-}
-
-  
-  
-  
-function getHighScore() {
-    fetch('/getHighScore')
-        .then(response => response.json())
-        .then(data => {
-            const highScoreElement = document.getElementById('highscore');
-            highScoreElement.innerText = "High Score: " + data.username + " - " + data.highScore;
-        })
-        .catch(error => {
-            console.error('Error getting high score:', error);
-        });
 }
 
 
