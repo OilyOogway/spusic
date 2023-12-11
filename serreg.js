@@ -107,47 +107,6 @@ app.get('/style.css', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'style.css'));
 });
 
-// // Route for submitting score
-// app.post('/submitScore', async (req, res) => {
-//   const username = req.body.username; // Assuming username is sent with the request
-//   const score = parseInt(req.body.score, 10);
-
-//   console.log("We are in the post");
-//   console.log(`Here is the current score ${score}`);
-
-//   // Validate username and score
-//   if (!username || isNaN(score)) {
-//     res.status(400).json({ error: 'Invalid data format' });
-//     return;
-//   }
-
-//   console.log("We passed validation");
-
-//   try {
-//     // Connect to MongoDB and save the score
-//     const client = await MongoClient.connect(MONGODB_URI);
-//     console.log("Connected to MongoDB");
-
-//     const dbo = client.db('test');
-//     const collection = dbo.collection('logins');
-
-//     // Update the score for the logged-in user
-//     const result = await collection.updateOne(
-//       { username: username },
-//       { $set: { score: score } },
-//       { upsert: true } // Create a new document if the username doesn't exist
-//     );
-
-//     console.log('Score saved successfully');
-//     res.status(200).json({ message: 'Score saved successfully' });
-
-//     // Close the MongoDB connection
-//     client.close();
-//   } catch (error) {
-//     console.error('Error connecting to the database or saving score:', error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// });
 
 app.post('/submitScore', async (req, res) => {
         const username = req.body.username; // Assuming username is sent with the request
