@@ -132,12 +132,10 @@ function setupGame() {
 
     // Show track buttons and score
     document.getElementById('tracks').hidden = false;
-    //I added this
     document.getElementById('highscore').hidden = false;
     score_display.innerText = "Score: " + score;
 
-    //Luke added this to get the highscore
-    //getHighScore();
+    getHighScore();
     getTopScores();
 
     // Choose a random song to play
@@ -181,7 +179,6 @@ function endGame() {
     document.getElementById('end_score').innerText = "Score: " + score;
 
     // Post the score to the server
-    //Luke's note: fixed the score constantly being zero by posting before the score was reset
     postScore();
     // Reset score
     score = 0;
