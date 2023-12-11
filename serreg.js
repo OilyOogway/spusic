@@ -89,6 +89,11 @@ app.use(express.static('public'));
 
 // Route for the main page
 app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
+
+// Route for serving spusic.js
+app.get('/spusic', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'spusic.html'));
 });
 
