@@ -1,20 +1,20 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="/style.css"> <!-- Make sure to start with a slash (/) -->
+    <link rel="stylesheet" href="/style.css">
+    <!-- This will make it mobile friendly -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Song Quiz</title>
 </head>
 
 <body>
+    <img src="spusic.jpg" id="logo">
     <div id="start">
-        <label>Hi welcome to spusic please enter a public playlist or just click start!</label>
+        <label>Hi, welcome to Spusic! Please enter a public playlist or just click start!</label>
         <input type="text" id="playlist"></br>
         <button class="play">
             Start game
         </button>
-    </div>
-    <div id="highscore" hidden="true">
-        <h1>Highscore: </h1>
     </div>
 
     <div class="tracks" id="tracks" hidden="true">
@@ -23,6 +23,7 @@
         <button class="track" data-spotify-id=""></button>
         <button class="track" data-spotify-id=""></button>
         <p id="score">Score: 0</p>
+        <p id="highscore">Highscore: </p>
     </div>
     <div hidden="true">
     </div>
